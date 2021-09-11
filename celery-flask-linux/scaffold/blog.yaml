@@ -1,0 +1,11 @@
+command:
+ - name:string
+ - task_id:text
+ - status:string
+ - result:text
+
+
+
+
+ 
+ 

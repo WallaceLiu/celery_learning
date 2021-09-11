@@ -1,0 +1,1 @@
+celery -A step2 worker -l info -n worker2@%h -Q step2_tasks

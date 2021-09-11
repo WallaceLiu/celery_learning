@@ -1,0 +1,7 @@
+Flask
+Celery[redis, msgpack]==4.4.7
+python-dotenv==0.10.3
+requests
+gunicorn
+psutil
+flower
