@@ -1,14 +1,13 @@
 import unittest
 
 from celery.exceptions import TimeoutError
-
-from tasks import test_canvas, build_canvas
-
+from .tasks import test_canvas, build_canvas
 
 SUCCESS = 'SUCCESS'
 FAILED = 'FAILED'
 TIMEOUT = 'TIMEOUT'
 ERROR = 'ERROR'
+
 
 def scenarios():
     for top_operator in ('chain', 'group', 'chord'):
@@ -17,6 +16,7 @@ def scenarios():
         for nested_operator in ('chain', 'group', 'chord'):
             yield SUCCESS, {top_operator: [1, {nested_operator: [1, 2, 3]}, 3]}
             yield FAILED, {top_operator: [1, {nested_operator: [1, 'err', 3]}, 3]}
+
 
 def run_signature(sig):
     result = sig.apply_async()
@@ -32,6 +32,7 @@ def run_signature(sig):
         else:
             # if an exception was thrown, shouldn't failed() be True?
             return ERROR, str(e)
+
 
 class TestCanvas(unittest.TestCase):
     def test_all_scenarios(self):

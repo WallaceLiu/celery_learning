@@ -6,12 +6,12 @@ broker_url = REDIS_URL
 broker_transport_options = {
     'fanout_prefix': True,
     'fanout_patterns': True,
-    #'visibility_timeout': 3600,
+    # 'visibility_timeout': 3600,
 }
 
 result_backend = REDIS_URL
-#result_extended = True
+# result_extended = True
 
-#task_track_started = True
-#task_acks_late = True
-#worker_prefetch_multiplier = 1
+# task_track_started = True
+# task_acks_late = True
+# worker_prefetch_multiplier = 1

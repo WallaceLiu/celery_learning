@@ -6,6 +6,7 @@ def map_into(klass):
     @wraps(klass)
     def create_generator(*greenlets, **kwargs):
         return klass(map(make_greenlet, greenlets), **kwargs)
+
     return create_generator
 
 
@@ -14,6 +15,7 @@ def greenlet_starter(greenlet):
         if not getattr(greenlet, 'immutable', False):
             greenlet.args = (previous.value,) + greenlet.args
         greenlet.start()
+
     return start_greenlet
 
 

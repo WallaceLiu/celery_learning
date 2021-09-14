@@ -1,5 +1,5 @@
 import argparse
-from tasks import fetch_bitcoin_price_index, calculate_moving_average
+from .tasks import fetch_bitcoin_price_index, calculate_moving_average
 from celery import chain
 
 

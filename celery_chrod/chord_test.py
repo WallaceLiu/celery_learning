@@ -1,14 +1,14 @@
 from __future__ import absolute_import
-from celery_chrod import celery_app
+from celery_chrod.celery_app import app
 from celery import chord
 
 
-@celery_app.task(name='celery_chrod.add')
+@app.task(name='celery_chrod.add')
 def add(x, y):
     return x + y
 
 
-@celery_app.task(name='celery_chrod.tsum')
+@app.task(name='celery_chrod.tsum')
 def tsum(numbers):
     return sum(numbers)
 

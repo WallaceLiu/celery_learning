@@ -3,17 +3,15 @@ from celery import Celery, group, chain
 app = Celery('tasks')
 app.config_from_object('celeryconfig')
 
+
 def flat_sum(values):
-    return sum(
-        value
-        if isinstance(value, (int, float))
-        else flat_sum(value)
-        for value in values
-    )
+    return sum(value if isinstance(value, (int, float)) else flat_sum(value) for value in values)
+
 
 @app.task(bind=True)
 def test_canvas(self, action, level=0):
-    print(f'{self.request.root_id!s:36} {self.request.parent_id!s:36} {self.request.id!s:36} test_custom_task level={level} {action!r}')
+    print(
+        f'{self.request.root_id!s:36} {self.request.parent_id!s:36} {self.request.id!s:36} test_custom_task level={level} {action!r}')
     if isinstance(action, (int, float)):
         return action
     elif isinstance(action, (list, tuple)):
@@ -33,6 +31,7 @@ def test_canvas(self, action, level=0):
             return self.replace(replace)
     else:
         raise ValueError(repr(action))
+
 
 def build_canvas(action, level=0):
     if isinstance(action, (int, float, str, bool)):

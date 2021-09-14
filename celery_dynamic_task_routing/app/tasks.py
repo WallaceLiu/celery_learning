@@ -2,7 +2,7 @@ import requests
 import pandas as pd
 import numpy as np
 
-from worker import app
+from .worker import app
 
 
 @app.task(bind=True, name='fetch_bitcoin_price_index')

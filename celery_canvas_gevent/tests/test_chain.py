@@ -1,5 +1,5 @@
-from gevent_canvas import chain
-from helpers import CountCalls, pass_parameter
+from celery_canvas_gevent.gevent_canvas import chain
+from celery_canvas_gevent.tests.helpers import CountCalls, pass_parameter
 from gevent import Greenlet
 
 

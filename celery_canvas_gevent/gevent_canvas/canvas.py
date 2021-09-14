@@ -1,5 +1,5 @@
 import gevent
-from core import greenlet_starter
+from .core import greenlet_starter
 
 
 class ArgsAddedGreenlet(gevent.Greenlet):

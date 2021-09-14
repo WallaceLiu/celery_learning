@@ -1,5 +1,5 @@
-from gevent_canvas import group
-from helpers import CountCalls, pass_parameter
+from celery_canvas_gevent.gevent_canvas import group
+from celery_canvas_gevent.tests.helpers import CountCalls, pass_parameter
 from gevent import Greenlet
 
 
@@ -9,8 +9,8 @@ class generate_greenlets(object):
         self.function = CountCalls(function)
         make_greenlets = lambda value: Greenlet(self.function, value)
         self.greenlets = map(make_greenlets, self.values)
-    
-    calls = property(lambda self: self.function.calls) 
+
+    calls = property(lambda self: self.function.calls)
 
 
 def test_simple_group():
@@ -48,7 +48,7 @@ def test_group_one():
 def test_with_immutable():
     count = 3
     generator = generate_greenlets(count)
-    
+
     extra_value = object()
     extra_function = CountCalls(pass_parameter)
     immutable_greenlet = Greenlet(extra_function, extra_value)
@@ -63,6 +63,7 @@ def test_with_immutable():
     assert generator.values[0:2] + [extra_value] + generator.values[2:3] == greenlet.get()
     assert count == generator.calls
     assert 1 == extra_function.calls
+
 
 def test_nested_group():
     count = 6

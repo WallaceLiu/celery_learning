@@ -1,5 +1,5 @@
 import gevent
-from gevent_canvas.core import make_greenlet
+from celery_canvas_gevent.gevent_canvas.core import make_greenlet
 
 
 def pass_parameter(param):

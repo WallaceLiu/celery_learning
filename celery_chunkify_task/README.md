@@ -9,7 +9,6 @@ In other words you may split a huge amount of created tasks in the small chunks 
 [celery.chunks](http://docs.celeryproject.org/en/latest/userguide/canvas.html#chunks) is not an option, because it still creates all tasks in a memory and attaches a huge blob of data to a message.
 
 Here is the example how to execute 1000 of tasks every 5 seconds:
-
 ```python
 from django.db.models import Min, Max  
 from chunkify import chunkify_task, Chunk  

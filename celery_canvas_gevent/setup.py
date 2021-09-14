@@ -3,16 +3,19 @@ from setuptools import setup
 from setuptools.command.test import test as TestCommand
 import sys
 
+
 class PyTest(TestCommand):
     def finalize_options(self):
         TestCommand.finalize_options(self)
         self.test_args = ['tests']
         self.test_suite = True
+
     def run_tests(self):
-        #import here, cause outside the eggs aren't loaded
+        # import here, cause outside the eggs aren't loaded
         import pytest
         errno = pytest.main(self.test_args)
         sys.exit(errno)
+
 
 setup(
     name='gevent-canvas',
@@ -26,5 +29,5 @@ setup(
     packages=['gevent_canvas'],
     install_requires=['gevent'],
     tests_require=['pytest'],
-    cmdclass = {'test': PyTest},
+    cmdclass={'test': PyTest},
 )
